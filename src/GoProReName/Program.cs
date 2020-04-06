@@ -29,10 +29,10 @@ namespace GoProReName
 
         static void ProcessFiles(string directory, bool recursive)
         {
-            var files = Directory.GetFiles(directory);
-            foreach (var f in files)
+            var filePaths = Directory.GetFiles(directory);
+            foreach (var filePath in filePaths)
             {
-                RenameFile(f);
+                RenameFile(filePath);
             }
 
             if (recursive)
@@ -45,9 +45,24 @@ namespace GoProReName
             }
         }
 
-        static void RenameFile(string file)
+        static void RenameFile(string path)
         {
-            Console.WriteLine(file);
+            var filename = Path.GetFileName(path);
+            var directory = Path.GetDirectoryName(path);
+
+            Console.Write(path + " -> ");
+
+            string[] parts;
+            if (SingleVideoRegex.IsMatch(filename))
+            {
+                parts = SingleVideoRegex.Split(filename);
+                Console.WriteLine(string.Format(SingleVideoFormat, parts[1]));
+            }
+            else if (ChapteredVideoRegex.IsMatch(filename))
+            {
+                parts = ChapteredVideoRegex.Split(filename);
+                Console.WriteLine(string.Format(ChapteredVideoFormat, parts[1], parts[2]));
+            }
         }
     }
 }
