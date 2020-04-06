@@ -8,7 +8,6 @@ namespace GoProReName
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(Environment.CurrentDirectory);
             Parser.Default.ParseArguments<CommandLineOptions>(args)
                 .WithParsed<CommandLineOptions>(o =>
                 {
