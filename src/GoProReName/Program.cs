@@ -9,7 +9,6 @@ namespace GoProReName
     {
         static readonly Regex SingleVideoRegex = new Regex(@"GOPR([0-9]{4})\.MP4", RegexOptions.IgnoreCase | RegexOptions.Compiled);
         static readonly Regex ChapteredVideoRegex = new Regex(@"GP([0-9]{2})([0-9]{4})\.MP4", RegexOptions.IgnoreCase | RegexOptions.Compiled);
-
         static readonly string SingleVideoFormat = "GH01{0}.MP4";
         static readonly string ChapteredVideoFormat = "GH{0}{1}.MP4";
 
@@ -18,13 +17,13 @@ namespace GoProReName
             Parser.Default.ParseArguments<CommandLineOptions>(args)
                 .WithParsed<CommandLineOptions>(o =>
                 {
-                    ProcessFiles(string.IsNullOrWhiteSpace(o.Directory) ?
+                    RenameAllFiles(string.IsNullOrWhiteSpace(o.Directory) ?
                         Environment.CurrentDirectory :
                         o.Directory, o.Recursive);
                 });
         }
 
-        static void ProcessFiles(string directory, bool recursive)
+        static void RenameAllFiles(string directory, bool recursive)
         {
             var filePaths = Directory.GetFiles(directory);
             foreach (var filePath in filePaths)
@@ -37,7 +36,7 @@ namespace GoProReName
                 var directories = Directory.GetDirectories(directory);
                 foreach (var d in directories)
                 {
-                    ProcessFiles(d, true);
+                    RenameAllFiles(d, true);
                 }
             }
         }
@@ -47,16 +46,24 @@ namespace GoProReName
             var filename = Path.GetFileName(path);
             var directory = Path.GetDirectoryName(path);
 
-            string[] parts;
+            string[] parts = null;
+            string newFilename = null;
             if (SingleVideoRegex.IsMatch(filename))
             {
                 parts = SingleVideoRegex.Split(filename);
-                Console.WriteLine(path + " -> " + string.Format(SingleVideoFormat, parts[1]));
+                newFilename = string.Format(SingleVideoFormat, parts[1]);
             }
             else if (ChapteredVideoRegex.IsMatch(filename))
             {
                 parts = ChapteredVideoRegex.Split(filename);
-                Console.WriteLine(path + " -> " + string.Format(ChapteredVideoFormat, parts[1], parts[2]));
+                newFilename = string.Format(ChapteredVideoFormat, parts[1], parts[2]);
+            }
+
+            if (newFilename != null)
+            {
+                var newPath = Path.Combine(directory, newFilename);
+                File.Move(path, newPath, false);
+                Console.WriteLine(path + " -> " + newPath);
             }
         }
     }
