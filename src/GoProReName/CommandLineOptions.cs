@@ -2,7 +2,7 @@
 
 namespace GoProReName
 {
-    public class CommandLineOptions
+    class CommandLineOptions
     {
         [Option(
             'r',
