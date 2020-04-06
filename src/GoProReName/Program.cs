@@ -62,8 +62,15 @@ namespace GoProReName
             if (newFilename != null)
             {
                 var newPath = Path.Combine(directory, newFilename);
-                File.Move(path, newPath, false);
                 Console.WriteLine(path + " -> " + newPath);
+                try
+                {
+                    File.Move(path, newPath, false);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
             }
         }
     }
