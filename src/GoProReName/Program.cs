@@ -7,13 +7,13 @@ namespace GoProReName
 {
     class Program
     {
-        static readonly Regex SingleVideoRegex = new Regex(@"GOPR([0-9]{4})\.mp4", RegexOptions.IgnoreCase & RegexOptions.Compiled);
-        static readonly Regex ChapteredVideoRegex = new Regex(@"GP([0-9]{2})([0-9]{4})\.mp4", RegexOptions.IgnoreCase & RegexOptions.Compiled);
+        static readonly Regex SingleVideoRegex = new Regex(@"GOPR([0-9]{4})\.MP4", RegexOptions.IgnoreCase | RegexOptions.Compiled);
+        static readonly Regex ChapteredVideoRegex = new Regex(@"GP([0-9]{2})([0-9]{4})\.MP4", RegexOptions.IgnoreCase | RegexOptions.Compiled);
         //static readonly Regex SinglePhotoRegex = new Regex(@"GOPR([0-9]{4})\.jpg", RegexOptions.IgnoreCase & RegexOptions.Compiled);
         //static readonly Regex BurstPhotoRegex = new Regex(@"G([0-9]{3})([0-9]{4})\.jpg", RegexOptions.IgnoreCase & RegexOptions.Compiled);
 
-        static readonly string SingleVideoFormat = "GH01{0}.mp4";
-        static readonly string ChapteredVideoFormat = "GH{0}{1}.mp4";
+        static readonly string SingleVideoFormat = "GH01{0}.MP4";
+        static readonly string ChapteredVideoFormat = "GH{0}{1}.MP4";
         //static readonly string SinglePhotoFormat = "";
 
         static void Main(string[] args)
@@ -50,18 +50,16 @@ namespace GoProReName
             var filename = Path.GetFileName(path);
             var directory = Path.GetDirectoryName(path);
 
-            Console.Write(path + " -> ");
-
             string[] parts;
             if (SingleVideoRegex.IsMatch(filename))
             {
                 parts = SingleVideoRegex.Split(filename);
-                Console.WriteLine(string.Format(SingleVideoFormat, parts[1]));
+                Console.WriteLine(path + " -> " + string.Format(SingleVideoFormat, parts[1]));
             }
             else if (ChapteredVideoRegex.IsMatch(filename))
             {
                 parts = ChapteredVideoRegex.Split(filename);
-                Console.WriteLine(string.Format(ChapteredVideoFormat, parts[1], parts[2]));
+                Console.WriteLine(path + " -> " + string.Format(ChapteredVideoFormat, parts[1], parts[2]));
             }
         }
     }
