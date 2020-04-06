@@ -4,31 +4,13 @@ using System.IO;
 
 namespace GoProReName
 {
-    class Program
+    public class Program
     {
-        class Options
-        {
-            [Option(
-                'r',
-                "recursive",
-                Required = false,
-                Default = false,
-                HelpText = "Recursively renames all files in the current directory and all subdirectories.")]
-            public bool Recursive { get; set; }
-
-            [Value(
-                0,
-                MetaName = "path",
-                Required = false,
-                HelpText = "Optional directory containing files to rename.")]
-            public string Directory { get; set; }
-        }
-
         static void Main(string[] args)
         {
             Console.WriteLine(Environment.CurrentDirectory);
-            Parser.Default.ParseArguments<Options>(args)
-                .WithParsed<Options>(o =>
+            Parser.Default.ParseArguments<CommandLineOptions>(args)
+                .WithParsed<CommandLineOptions>(o =>
                 {
                     ProcessFiles(string.IsNullOrWhiteSpace(o.Directory) ?
                         Environment.CurrentDirectory :
