@@ -9,8 +9,8 @@ namespace GoProReName
     {
         static readonly Regex SingleVideoRegex = new Regex(@"GOPR([0-9]{4})\.MP4", RegexOptions.IgnoreCase | RegexOptions.Compiled);
         static readonly Regex ChapteredVideoRegex = new Regex(@"GP([0-9]{2})([0-9]{4})\.MP4", RegexOptions.IgnoreCase | RegexOptions.Compiled);
-        static readonly string SingleVideoFormat = "GH01{0}.MP4";
-        static readonly string ChapteredVideoFormat = "GH{0}{1}.MP4";
+        static readonly string SingleVideoFormat = "{0}00.mp4";
+        static readonly string ChapteredVideoFormat = "{0}{1}.mp4";
 
         static void Main(string[] args)
         {
@@ -56,7 +56,7 @@ namespace GoProReName
             else if (ChapteredVideoRegex.IsMatch(filename))
             {
                 parts = ChapteredVideoRegex.Split(filename);
-                newFilename = string.Format(ChapteredVideoFormat, parts[1], parts[2]);
+                newFilename = string.Format(ChapteredVideoFormat, parts[2], parts[1]);
             }
 
             if (newFilename != null)
@@ -69,6 +69,7 @@ namespace GoProReName
                 }
                 catch (Exception e)
                 {
+
                     Console.WriteLine(e.Message);
                 }
             }
