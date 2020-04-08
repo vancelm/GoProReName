@@ -30,13 +30,13 @@ GOPR0003.MP4
 GoProReName (GPRN) will simply rename those files so they are easier to organize. The same files after running GPRN would look like this:
 
 ```
-000100.MP4
-000200.MP4
-000201.MP4
-000300.MP4
-000301.MP4
-000302.MP4
-000303.MP4
+GOPR0001.MP4 -> 000101.MP4
+GOPR0002.MP4 -> 000201.MP4
+GP010002.MP4 -> 000202.MP4
+GOPR0003.MP4 -> 000301.MP4
+GP010003.MP4 -> 000302.MP4
+GP020003.MP4 -> 000303.MP4
+GP030003.MP4 -> 000304.MP4
 ```
 
 That's it. I will be adding support to rename filenames from newer GoPro cameras as well. The newer cameras are a little more sane with their file naming conventions, but they still put the "chapter" number before the file number, which still makes sorting a pain.
