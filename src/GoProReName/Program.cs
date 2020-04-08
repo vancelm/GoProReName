@@ -9,7 +9,7 @@ namespace GoProReName
     {
         static readonly Regex SingleVideoRegex = new Regex(@"GOPR([0-9]{4})\.MP4", RegexOptions.IgnoreCase | RegexOptions.Compiled);
         static readonly Regex ChapteredVideoRegex = new Regex(@"GP([0-9]{2})([0-9]{4})\.MP4", RegexOptions.IgnoreCase | RegexOptions.Compiled);
-        static readonly string FilenameFormat = "{0}{1}.mp4";
+        static readonly string FilenameFormat = "{0:D4}{1:D2}.MP4";
 
         static void Main(string[] args)
         {
