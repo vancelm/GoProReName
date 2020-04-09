@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29926.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoProReName", "GoProReName\GoProReName.csproj", "{FE4B1AB6-3502-4442-AAFF-9F84D9D408CD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoProReName", "GoProReName\GoProReName.csproj", "{FE4B1AB6-3502-4442-AAFF-9F84D9D408CD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoProReName.Test", "GoProReName.Test\GoProReName.Test.csproj", "{C16A8934-4B01-4D0B-B06E-C5FE0E42F471}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{FE4B1AB6-3502-4442-AAFF-9F84D9D408CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FE4B1AB6-3502-4442-AAFF-9F84D9D408CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FE4B1AB6-3502-4442-AAFF-9F84D9D408CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C16A8934-4B01-4D0B-B06E-C5FE0E42F471}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C16A8934-4B01-4D0B-B06E-C5FE0E42F471}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C16A8934-4B01-4D0B-B06E-C5FE0E42F471}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C16A8934-4B01-4D0B-B06E-C5FE0E42F471}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

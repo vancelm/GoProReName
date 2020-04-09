@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 
 namespace GoProReName
 {
-    class Program
+    public class Program
     {
         static readonly Regex SingleVideoRegex = new Regex(@"GOPR([0-9]{4})\.MP4", RegexOptions.IgnoreCase | RegexOptions.Compiled);
         static readonly Regex ChapteredVideoRegex = new Regex(@"GP([0-9]{2})([0-9]{4})\.MP4", RegexOptions.IgnoreCase | RegexOptions.Compiled);
@@ -61,7 +61,7 @@ namespace GoProReName
             }
         }
 
-        static string GetNewFilename(string filename)
+        public static string GetNewFilename(string filename)
         {
             if (SingleVideoRegex.IsMatch(filename))
             {
